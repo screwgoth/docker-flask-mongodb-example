@@ -9,15 +9,17 @@ curl -X PUT "http://localhost:800/random" -H "accept: application/json" -H "Cont
 curl -X PUT "http://localhost:800/random" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "lower=10&upper=100"
 
 # users crud
-curl -X PUT "http://localhost:81/users/1" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=daniel%40gmail.com&name=Daniel"
-curl -X PUT "http://localhost:81/users/2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=gimy%40gmail.com&name=Gimy"
-curl -X PUT "http://localhost:81/users/3" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=tor%40gmail.com&name=Tor"
+curl -X POST "http://localhost:81/users/1" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=daniel%40gmail.com&name=Daniel"
+curl -X POST "http://localhost:81/users/2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=gimy%40gmail.com&name=Gimy"
+curl -X POST "http://localhost:81/users/3" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=tor%40gmail.com&name=Tor"
 
 # fulltext search
-curl -X PUT "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=Who%20has%20many%20apples%3F"
-curl -X PUT "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=The%20apple%20tree%20grew%20in%20the%20park"
-curl -X PUT "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=Some%20apples%20are%20green%20some%20are%20yellow"
-curl -X PUT "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=How%20many%20trees%20are%20there%20in%20this%20forest%3F"
+curl -X PUT --user admin:changeme "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=Who%20has%20many%20apples%3F"
+curl -X PUT --user admin:changeme "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=The%20apple%20tree%20grew%20in%20the%20park"
+curl -X PUT --user admin:changeme "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=Some%20apples%20are%20green%20some%20are%20yellow"
+curl -X PUT --user admin:changeme "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=How%20many%20trees%20are%20there%20in%20this%20forest%3F"
+curl -X GET --user admin:changeme "http://localhost:82/search/apple" -H "accept: application/json"
+curl -X GET --user admin:changeme "http://localhost:82/search/tree" -H "accept: application/json"
 
 # geolocation-search
 curl -X POST "http://localhost:83/location" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "name=Bucharest&lat=44.2218653&lng=26.1753655"
@@ -43,3 +45,14 @@ curl -X PUT "http://localhost:84/item/vote/2" -H "accept: application/json" -H "
 curl -X PUT "http://localhost:86/book/978-0735211292" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"isbn\": \"978-0735211292\", \"name\": \"Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones\", \"author\": \"James Clear\", \"publisher\": \"Avery; Illustrated Edition (October 16, 2018)\", \"nr_available\": 5}"
 curl -X PUT "http://localhost:86/book/978-0525538585" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"isbn\": \"978-0525538585\", \"name\": \"Stillness Is the Key\", \"author\": \"Ryan Holiday\", \"publisher\": \"Portfolio (October 1, 2019)\", \"nr_available\": 3}"
 curl -X PUT "http://localhost:86/borrow/1" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"id\": \"string\", \"userid\": 1, \"isbn\": \"978-0735211292\", \"borrow_date\": \"2020-10-13T13:04:37.644Z\", \"max_return_date\": \"2020-11-13T13:04:37.644Z\"}"
+
+
+# Humidity and Tempertaure in InfluxDB
+curl -i -XPOST 'http://localhost:8086/write?db=influx' --data-binary 'humidity value=61'
+curl -i -XPOST 'http://localhost:8086/write?db=influx' --data-binary 'humidity value=62'
+curl -i -XPOST 'http://localhost:8086/write?db=influx' --data-binary 'humidity value=59'
+curl -i -XPOST 'http://localhost:8086/write?db=influx' --data-binary 'temperature value=15'
+curl -i -XPOST 'http://localhost:8086/write?db=influx' --data-binary 'temperature value=16.5'
+curl -i -XPOST 'http://localhost:8086/write?db=influx' --data-binary 'temperature value=17'
+
+

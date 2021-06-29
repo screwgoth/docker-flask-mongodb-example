@@ -1,4 +1,4 @@
-import json
+import json, sys
 
 import redis
 from flask import Flask, request, Response
@@ -11,7 +11,10 @@ from caching import cache, cache_invalidate
 
 app = Flask(__name__)
 swagger = Swagger(app)
-users = MongoClient("mongodb", 27017).demo.users
+mongo_host = "mongodb"
+if len(sys.argv) == 2:
+    mongo_host = sys.argv[1]
+users = MongoClient(mongo_host, 27017).demo.users
 redis_cache = redis.Redis(
     host="redis", port=6379, db=0, password=read_docker_secret("REDIS_PASSWORD")
 )
