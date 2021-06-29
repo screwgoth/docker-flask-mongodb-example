@@ -58,7 +58,7 @@ It is connected with the MQTT service. Every datapoint that passes through the M
 (port 3000)
 Default credentials are: admin / admin
 
-**10** [User CRUD fastapi](#User-CRUD-fastapi) Create, read, update and detele operations made available with fastapi framework (port 88)
+**10** [User CRUD fastapi](#User-CRUD-fastapi) Create, read, update and detele operations made available with fastapi framework (port 90)
 
 **11** [Tic-tac-toe](#Tic-tac-toe) A tic tac toe game written in flask using flask_session. It has a simple UI (port 89)
 
@@ -118,7 +118,7 @@ port 83 is free
 port 84 is free
 port 85 is free
 port 86 is free
-port 88 is free
+port 90 is free
 port 89 is free
 port 1883 is free
 port 27017 is free
@@ -707,7 +707,7 @@ e9a21902695c   web-geolocation-image                   "python /root/flask-…" 
 32bacfb75aa5   web-standard                            "python /root/flask-…"   5 days ago       Up 27 seconds   0.0.0.0:82->5000/tcp                         docker-flask-mongodb-example_web-fulltext-search_1
 0e3c2f07d699   web-standard                            "python /root/flask-…"   5 days ago       Up 25 seconds   0.0.0.0:81->5000/tcp                         docker-flask-mongodb-example_web-users_1
 19edd4cd73fa   web-standard                            "python /root/flask-…"   5 days ago       Up 22 seconds   0.0.0.0:800->5000/tcp                        docker-flask-mongodb-example_web-random_1
-cb77566c0cd5   web-users-fastapi-image                 "uvicorn users-fasta…"   5 days ago       Up 30 seconds   0.0.0.0:88->5000/tcp                         docker-flask-mongodb-example_web-users-fast-api_1
+cb77566c0cd5   web-users-fastapi-image                 "uvicorn users-fasta…"   5 days ago       Up 30 seconds   0.0.0.0:90->5000/tcp                         docker-flask-mongodb-example_web-users-fast-api_1
 d220b6da78cf   docker-flask-mongodb-example_grafana    "/app/entrypoint.sh"     5 days ago       Up 23 seconds   0.0.0.0:3000->3000/tcp                       docker-flask-mongodb-example_grafana_1
 0f4b9577ce7a   docker-flask-mongodb-example_influxdb   "/app/entrypoint.sh"     5 days ago       Up 28 seconds   0.0.0.0:8086->8086/tcp                       docker-flask-mongodb-example_influxdb_1
 af82fc58a992   mongo:latest                            "docker-entrypoint.s…"   5 days ago       Up 32 seconds   0.0.0.0:27017->27017/tcp                     docker-flask-mongodb-example_mongo_1
@@ -736,7 +736,7 @@ More examples in the documentation: https://docs.influxdata.com/influxdb/v1.7/in
 ## User CRUD fastapi
 Same as User CRUD, written with fastapi framework (https://fastapi.tiangolo.com/):
 
-Swagger URL: http://localhost:88/docs
+Swagger URL: http://localhost:90/docs
 
 
 
