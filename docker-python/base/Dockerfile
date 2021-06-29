@@ -12,6 +12,6 @@ WORKDIR /root
 # COPY ./project ./flask-mongodb-example/
 
 # 2. [DEVELOPMENT ONLY] comment the line with git clone
-RUN git clone https://github.com/danionescu0/docker-flask-mongodb-example.git flask-mongodb-example
+RUN git clone https://github.com/screwgoth/docker-flask-mongodb-example.git flask-mongodb-example
 
 # 3. [DEVELOPMENT ONLY] run in shell from Dockerfile location: mkdir project; rsync -av --progress ../../ ./project/ --exclude docker-python
