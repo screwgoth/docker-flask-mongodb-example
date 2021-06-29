@@ -9,9 +9,9 @@ curl -X PUT "http://localhost:800/random" -H "accept: application/json" -H "Cont
 curl -X PUT "http://localhost:800/random" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "lower=10&upper=100"
 
 # users crud
-curl -X PUT "http://localhost:81/users/1" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=daniel%40gmail.com&name=Daniel"
-curl -X PUT "http://localhost:81/users/2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=gimy%40gmail.com&name=Gimy"
-curl -X PUT "http://localhost:81/users/3" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=tor%40gmail.com&name=Tor"
+curl -X POST "http://localhost:81/users/1" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=daniel%40gmail.com&name=Daniel"
+curl -X POST "http://localhost:81/users/2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=gimy%40gmail.com&name=Gimy"
+curl -X POST "http://localhost:81/users/3" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "email=tor%40gmail.com&name=Tor"
 
 # fulltext search
 curl -X PUT "http://localhost:82/fulltext" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "expression=Who%20has%20many%20apples%3F"
