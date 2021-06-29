@@ -33,5 +33,10 @@ def read_docker_secret(name: str) -> str:
     :param name: name of the secret
     :return: the secret as a string
     """
-    with open(os.environ.get(name), "r") as file:
-        return file.read()
+    path = os.environ.get(name)
+    if os.path.exists(path):
+        f = open(path, "r")
+        return f.read()
+    else:
+        return path
+
