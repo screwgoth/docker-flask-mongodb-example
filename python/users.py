@@ -37,6 +37,14 @@ def add_user(userid):
         in: formData
         type: string
         required: true
+      - name: address
+        in: formData
+        type: string
+        required: false
+      - name: description
+        in: formData
+        type: string
+        required: false
     responses:
       200:
         description: Creation succeded
@@ -54,6 +62,8 @@ def add_user(userid):
                 "_id": userid,
                 "email": request_params["email"],
                 "name": request_params["name"],
+                "address": request_params["address"],
+                "description": request_params["description"]
             }
         )
     except errors.DuplicateKeyError as e:
@@ -83,6 +93,14 @@ def update_user(userid):
         in: formData
         type: string
         required: false
+      - name: address
+        in: formData
+        type: string
+        required: false
+      - name: description
+        in: formData
+        type: string
+        required: false
     responses:
       200:
         description: Update succeded
@@ -99,6 +117,10 @@ def update_user(userid):
         set["email"] = request_params["email"]
     if "name" in request_params:
         set["name"] = request_params["name"]
+    if "address" in request_params:
+        set["address"] = request_params["address"]
+    if "description" in request_params:
+        set["description"] = request_params["description"]
     users.update_one({"_id": userid}, {"$set": set})
     return Response(
         json.dumps(users.find_one({"_id": userid})),
@@ -126,6 +148,10 @@ def get_user(userid):
           email:
             type: string
           name:
+            type: string
+          address:
+            type: string
+          description:
             type: string
     responses:
       200:
@@ -167,6 +193,10 @@ def get_users():
                 type: string
               name:
                 type: string
+              address:
+                type: string
+              description:
+                type: string
     responses:
       200:
         description: List of user models
@@ -181,7 +211,7 @@ def get_users():
         return Response(json.dumps([]), status=200, mimetype="application/json")
 
     extracted = [
-        {"userid": d["_id"], "name": d["name"], "email": d["email"]} for d in user_list
+        {"userid": d["_id"], "name": d["name"], "email": d["email"], "address": d["address"], "description": d["description"]} for d in user_list
     ]
     return Response(
         json.dumps(extracted, default=json_util.default),
