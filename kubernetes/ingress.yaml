@@ -1,0 +1,32 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cluster-ingress
+  annotations:
+    kubernetes.io/ingress.class: ingress-nginx
+spec:
+  rules:
+  - host: web-user.rasdevcluster.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-users-service
+          servicePort: 81
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+data:
+  27017: "default/mongodb-service:27017" 
+  82: "default/fulltext-search-service:82"
+  81: "default/web-users-service:81"
+  800: "default/random-demo-service:800"
+  6379: "default/redis:6379"
+  
