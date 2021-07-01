@@ -95,7 +95,7 @@ architecture: replicaset
 
 ## Use StatefulSet instead of Deployment when deploying standalone
 ##
-useStatefulSet: false
+useStatefulSet: true
 
 ## MongoDB(R) Authentication parameters
 ##
@@ -540,7 +540,7 @@ persistence:
     - ReadWriteOnce
   ## PVC size
   ##
-  size: 10Mi
+  size: 1Gi
   ## PVC annotations
   ##
   annotations: {}
